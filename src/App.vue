@@ -1,14 +1,9 @@
 <template>
 <v-app>
 <div id="app"> 
-  <toolbar/>
- 
-  <formulario/>
+ <!--  <toolbar/> -->
   <router-link to="/">
-
     </router-link >
-
-
   <router-view/>
 
  </div>
@@ -17,13 +12,10 @@
 
 <script>
 import Footer from './components/Footer.vue'
-
-import Toolbar from './components/Toolbar.vue'
+//import Toolbar from './components/Toolbar.vue'
 
 export default {
-  components:{Toolbar, Footer}
+  components:{Footer}
 }
 </script>
    
-,
-    Formulario

@@ -4,17 +4,18 @@
     flat
     height="200px"
     tile
+   
   >
     <v-toolbar
       extended
       extension-height="100"
-    src="https://i.ibb.co/nwPw2JG/color.png"
-       
+       style=" background-color: #111226;"
     >
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
    
-<img src=" https://i.ibb.co/jyCCf6c/logo-Adentu-06.png" style="    width: 10%;
+<img src="https://i.ibb.co/C6z4MJf/logo-xs-nb.png"  style="   
+    width: 25%;
     margin-top: 80px;
     margin-right: 30px;">
       <v-spacer></v-spacer>
