@@ -68,7 +68,7 @@
                     tile
                     color="#45b9d5"
                     group
-                  >
+                  > 
                     <v-btn value="fa fa-camera">
                       Camera
                     <v-icon>mdi-camera</v-icon>
