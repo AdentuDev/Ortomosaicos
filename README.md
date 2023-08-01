@@ -1,8 +1,8 @@
-# Cargar de imagenes
+# ADNT-005 FrontEnd  Plataforma de api_ortomosaicos
 
 1. Introduccion
 Carga de imagenes ,permite almacenar datos de área ,opción,fecha e icono con un grupo de imagenes .
-[Demo](http://www.adentu.cl/test_vue/?pr_id=9)
+[Demo](http://www.3.92.184.235/test_vue/?pr_id=9)
 
 2. Uso de la plataforma
 
