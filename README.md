@@ -25,3 +25,6 @@ Carga de imagenes ,permite almacenar datos de área ,opción,fecha e icono con u
 para instalar dependencias ,se debe utilizar el comando 
  $ npm install
 
+=======
+# Ortomosaicos
+Desarrollo para la web Ortomosaicos
