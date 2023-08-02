@@ -12,7 +12,7 @@
     flex-direction: column;
         align-items: center;
         " 
-      > 
+      >  
    <img src="https://i.ibb.co/8g00rsr/logo-xs-nb.png" style=" width: 70%; margin-bottom: 70px;"> 
        <form style=" 
           margin-top: 2px;
