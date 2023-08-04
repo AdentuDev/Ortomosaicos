@@ -80,7 +80,7 @@
 
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 import store from '../store/index'
 
   export default {
@@ -106,7 +106,7 @@ import store from '../store/index'
           methods: {
             click() {
               // Original axios code (API call) - Comment out the entire block
-              /*
+              
               var params = new URLSearchParams();
               params.append("user", this.datos.username);
               params.append("password", this.datos.password);
@@ -129,7 +129,7 @@ import store from '../store/index'
                 .catch((error) => {
                   console.error("API error:", error);
                 });
-              */
+              
 
               // Mock response for testing purposes
               const mockResponse = {

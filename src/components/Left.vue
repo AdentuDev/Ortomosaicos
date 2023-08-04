@@ -47,12 +47,12 @@
       </v-list-item-group>
   
 
-         <v-list-group
+         <!--v-list-group
           :value=false
           style="color: white"
                no-action
-        >
-          <template v-slot:activator>
+         -->
+          <!--template v-slot:activator-->
               <v-list-item >
         
               <v-list-item-icon>
@@ -62,7 +62,7 @@
                 <v-list-item-title style="color: white;">Imagenes</v-list-item-title>
               </v-list-item-content> 
             </v-list-item>
-          </template>
+          <!--/template-->
   
  
             <v-list-item
@@ -81,17 +81,17 @@
             </v-list-item>
         
   
-        </v-list-group>
+        <!--/v-list-group-->
 
   
-        <v-list-group
+        <!--v-list-group
             :value=false
             no-action
       
-          >
-            <template v-slot:activator>
+        -->
+            <!--template v-slot:activator-->
             
-        <v-list-item >
+        <v-list-item>
         
               <v-list-item-icon>
                 <v-icon  style="color: white;"  >mdi-map-marker-radius</v-icon>
@@ -102,7 +102,7 @@
             </v-list-item>
 
 
-            </template>
+            <!--/template-->
   
             <v-list-item
               v-for="(item, i) in anotaciones"
@@ -119,7 +119,7 @@
             <v-list-item-title v-text="item.text"  style="color: white;"></v-list-item-title>
 
             </v-list-item>
-        </v-list-group> 
+        <!--/v-list-group--> 
     </v-list>
 
       

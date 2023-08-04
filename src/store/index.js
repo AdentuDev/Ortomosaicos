@@ -13,7 +13,7 @@ export default new Vuex.Store({
     proyectos:null,
     usuario:null,
     eleccionProyecto:"null",
-    url_api:"http://api_plataforma.adentu.tech/index.php/"
+    url_api:"http://api-plataforma.adentu.cloud/index.php/"
   },
 
   mutations: {
