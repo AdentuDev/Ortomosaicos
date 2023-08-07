@@ -310,10 +310,9 @@ export default {
     }
  },
    methods:{ 
-     guardarProyecto(){
- console.log("guardar")
-      let self_test = this
- console.log("datos guardas",this.datos)
+      guardarProyecto(){
+        let self_test = this
+        console.log("guardar: ", this.datos)
 
       var proyecto={
                   proyecto:{
@@ -373,7 +372,7 @@ crearNuevoProyecto(){
       listaSidebar.forEach(element=>this.sidebar.push(element) )
         }),
 
-axios.get(' http://api-plataforma.adentu.cl/index.php/Mantenedores/getUsuarios')
+axios.get(' http://prueba-api.adentu.cl/index.php/Mantenedores/getUsuarios')
 .then((response) =>{
   this.usuarios=[]
   const listaUsuarios=response.data
