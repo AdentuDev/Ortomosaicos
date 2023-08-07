@@ -59,136 +59,124 @@
 
                                     </v-col>
 
-  <v-col
-                                      cols="12"
-                                      sm="10"
-                                    >
+                    <v-col
+                      cols="12"
+                      sm="10"
+                    >
                                     
-                                              <v-text-field  
-                                                label="Ingrese nuevamente su contraseña"
-                                                prepend-icon="mdi-lock"
-                                                required
-                                                outlined
-                                                v-model="datos.contraseña2"
-                                                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                                                
-                                                :type="show1 ? 'text' : 'password'"
-                                                
-                                                @click:append="show1 = !show1"
-                                                >
-                                                </v-text-field > 
-
-                                    </v-col>
-                                    
-
-                                      <v-col
-                                      cols="12"
-                                      sm="6"
-                                    >
-                                     <v-select
-                                      prepend-icon="mdi-checkbox-multiple-marked-outline"
-                                        v-model="datos.permiso"
-                                        :items="permisos"
-                                        item-text="desc"
-                                        item-value="id"
-                                        attach
-                                        chips
-                                        label="Permisos"
-                                        multiple
-                                        outlined
-                                    ></v-select>
-
-                                    </v-col>
-
-
-                                       <v-col
-                                      cols="12"
-                                      sm="6"
-                                    >
-                                     <v-select
-                                      prepend-icon="mdi-folder-multiple-outline"
-                                        v-model="datos.proyecto"
-                                        :items="$store.state.proyectos"
-                                        item-text="pr_desc"
-                                        item-value="id"
-                                        attach
-                                        chips
-                                        label="Proyectos"
-                                        multiple
-                                        outlined
-                                    ></v-select>
-
-                                    </v-col>
-                                  
-
-                  </v-row>                    
-       </form>
-         <v-col
-                                      cols="12"
-                                      sm="12"
-                                    >
-                                <!--        <v-alert
-                                       v-show="alerta"
-      dense
-      outlined
-      type="error"
-    >
-     Contraseñas  <strong>no</strong> coinciden ,ingrese nuevamente
-    </v-alert> -->
+                    <v-text-field  
+                      label="Ingrese nuevamente su contraseña"
+                      prepend-icon="mdi-lock"
+                      required
+                      outlined
+                      v-model="datos.contraseña2"
+                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"                          
+                      :type="show1 ? 'text' : 'password'"                          
+                      @click:append="show1 = !show1"
+                    >
+                  </v-text-field > 
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="6"
+                >
+                <v-select
+                  prepend-icon="mdi-checkbox-multiple-marked-outline"
+                  v-model="datos.permiso"
+                  :items="permisos"
+                  item-text="desc"
+                  item-value="id"
+                  attach
+                  chips
+                  label="Permisos"
+                  multiple
+                  outlined
+                ></v-select>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="6"
+                >
+                <v-select
+                  prepend-icon="mdi-folder-multiple-outline"
+                  v-model="datos.proyecto"
+                  :items="$store.state.proyectos"
+                  item-text="pr_desc"
+                  item-value="id"
+                  attach
+                  chips
+                  label="Proyectos"
+                  multiple
+                  outlined
+                ></v-select>
+              </v-col>
+            </v-row>                    
+          </form>
+          <v-col
+            cols="12"
+            sm="12"
+          >
+          <v-alert
+            v-show="alerta"
+            dense
+            outlined
+            type="error"
+          >
+            Contraseñas  <strong>no</strong> coinciden ,ingrese nuevamente
+          </v-alert> 
  
-       <v-alert
-          v-show="alerta"
-      text
-      prominent
-      type="error"
-      icon="mdi-comment-remove-outline"
-    >
-        Contraseñas  <strong>no</strong> coinciden ,ingrese nuevamente
-    </v-alert>
+          <v-alert
+            v-show="alerta"
+            text
+            prominent
+            type="error"
+            icon="mdi-comment-remove-outline"
+          >
+            Contraseñas  <strong>no</strong> coinciden ,ingrese nuevamente
+          </v-alert>
 
-       </v-col>
-<div >
-                            <v-dialog
-                                v-model="dialog"
-                                persistent max-width="290"
-                                style="background-color:#111226;">
-                                              <template v-slot:activator="{ on }"  style="background-color:#111226;">
-                                                <v-btn
-                                                    style="margin-top: 10px;"
-                                                    block
-                                                    color="success" 
-                                                    :disabled="!datos.permiso" 
-                                                    dark v-on="on">Guardar usuario</v-btn>
-                                              </template>
-                                              <v-card>
-                                                <v-card-title class="headline">Nuevo Usuario</v-card-title>
-                                                <v-card-text>¿Desea guardar este nuevo Usuario? </v-card-text>
-                                                <v-card-actions>
-                                                  <v-spacer></v-spacer>
-                                                  <v-btn color="green darken-1" style="color:white;" flat @click="guardarUsuario()">Guardar</v-btn>
-                                                  <v-btn color="red darken-1"  style="color:white;" flat @click="dialog = false">Cancelar</v-btn>
-                                                </v-card-actions>
-                                              </v-card>
-                                          </v-dialog>
-         
-                  </div> 
-
+        </v-col>
+        <div>
+          <v-dialog
+            v-model="dialog"
+            persistent max-width="290"
+            style="background-color:#111226;">
+            <template v-slot:activator="{ on }"  style="background-color:#111226;">
+              <v-btn
+                style="margin-top: 10px;"
+                block
+                color="success" 
+                :disabled="!datos.permiso" 
+                dark v-on="on">Guardar usuario
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title class="headline">Nuevo Usuario</v-card-title>
+              <v-card-text>¿Desea guardar este nuevo Usuario? </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green darken-1" style="color:white;" flat @click="guardarUsuario()">Guardar</v-btn>
+                <v-btn color="red darken-1"  style="color:white;" flat @click="dialog = false">Cancelar</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>         
+        </div>
       </v-col>
-
-   </v-row >
- 
- </v-container>
-
-  
+    </v-row >
+  </v-container>
 </template>
 
 
+
+
 <script>
+import Left from '../Left.vue'
 import store from '@/store';
 import axios from "axios";
 import Usuario from '../../views/Usuario.vue'
 
 export default {
+  components: {Left},
   components: { Usuario },
 
 data(){

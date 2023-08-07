@@ -110,11 +110,13 @@ import store from '../store/index'
               var params = new URLSearchParams();
               params.append("user", this.datos.username);
               params.append("password", this.datos.password);
+              console.log("params: ", params);
               axios.post(store.state.url_api + 'login/login', params)
                 .then((params) => {
                   console.log("paramsss", params);
                   this.datos.token = params.data;
 
+                  console.log("params.data.token", params.data.token);
                   if (params.data.token !== "") {
                     store.commit('cambioToken', params.data.token);
                     store.commit('ingresoProyectos', params.data.proyectos);
@@ -132,10 +134,10 @@ import store from '../store/index'
               
 
               // Mock response for testing purposes
-              const mockResponse = {
+              /*const mockResponse = {
                 data: {
                   token: 'mocked_token',
-                  proyectos: [/* Mocked projects array */],
+                  proyectos: [],
                   user_name: 'mocked_username',
                 },
               };
@@ -144,7 +146,7 @@ import store from '../store/index'
               this.datos.token = mockResponse.data.token;
               store.commit('cambioToken', mockResponse.data.token);
               store.commit('ingresoProyectos', mockResponse.data.proyectos);
-              store.commit('usuario', mockResponse.data.user_name);
+              store.commit('usuario', mockResponse.data.user_name);*/
               this.$router.push('/poligono');
               enviar();
 

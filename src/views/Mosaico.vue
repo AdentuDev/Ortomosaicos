@@ -3,7 +3,7 @@
       
        <v-layout style="height:100%">  
               <v-flex  xs2 style="background-color : #111226">
-                   <LeftPrueba />
+                   <Left/>
             
               </v-flex>
               <v-flex xs9>
@@ -53,13 +53,13 @@ import SelectProyecto from '../components/SelectProyecto.vue'
 import AppVue from '../App.vue'
 import axios from "axios";
 import store from '../store/index'
-import LeftPrueba from '../components/LeftPrueba.vue'
+//import LeftPrueba from '../components/LeftPrueba.vue'
 import FormularioMosaicos from '../components/Mosaicos/FormularioMosaicos.vue'
 import Documento from '../components/Documento.vue'
 
 
 export default {
-  components: {Formulario,FormularioMosaicos,Left,Toolbar,SelectProyecto, LeftPrueba, FormularioMosaicos,Documento},
+  components: {Formulario,FormularioMosaicos,Left,Toolbar,SelectProyecto, FormularioMosaicos,Documento},
    
   name:'Mosaico',
  data(){

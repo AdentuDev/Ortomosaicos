@@ -24,6 +24,7 @@
       <div > 
 
       </div>
+      <br>
  <!--  <h1> priyecto{{$store.state.eleccionProyecto}} </h1>  -->
  <div style="display: flex;">
         <v-select
@@ -67,7 +68,7 @@
  
 
 
-  <v-card
+  <!--v-card
     max-width="400"
     class="mx-auto"
   >
@@ -107,7 +108,7 @@
     </v-container>
   </v-card>
 
-<button @click=guardar()> guardar</button>
+<button @click=guardar()> guardar</button-->
  </v-container>
 
   
