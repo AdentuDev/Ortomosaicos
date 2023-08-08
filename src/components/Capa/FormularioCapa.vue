@@ -569,7 +569,8 @@ export default {
           self_test.datos.longitud2="" 
           self_test.datos.capaId=0 
            self_test.datos.tipo=""
-
+          
+          console.log("store: ", store)
           axios.get(store.state.url_api+'Mantenedores/getAreas/'+event,{
 
           headers: {

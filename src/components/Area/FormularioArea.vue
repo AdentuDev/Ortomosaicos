@@ -349,132 +349,103 @@ console.log("area a back",area)
 
 
     seleccion_pr_id(event){
-         let self_test = this
-         this.datos.nuevaArea=false
-         const seleccionProyecto=event
-         store.commit('eleccionProyecto',seleccionProyecto) 
+      let self_test = this
+      this.datos.nuevaArea=false
+      const seleccionProyecto=event
+      store.commit('eleccionProyecto',seleccionProyecto) 
 
-    /*       self_test.datos.mapa=false  
-          self_test.datos.latitud1=""
-          self_test.datos.longitud1=""
-          self_test.datos.descripcion=""*/
-          self_test.datos.areaId=0  
-            
-          axios.get(store.state.url_api+'Mantenedores/getAreas/'+event,{
-
-          headers: {
-            Authorization:store.state.token
-          }
-          })
-                .then(response => {
-                
-                  this.areas = []
-                  this.areas2 = []
-                  const areaAlmacenada =response.data.areas
-                  console.log("areaaaaasssssss",response.data.areas)
-                    areaAlmacenada.forEach(element =>  self_test.areas.push({"id" : element.ar_id, "desc":element.ar_desc ,"id_area" : element.ar_id,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon , "ar_ar_id":element.ar_ar_id}))
-
-                    self_test.areas2.push({"id" : "0", "desc":"Sin área madre" ,"id_area" : 0,"ar_lat":0, "ar_lon":0})
-                   self_test.areas.forEach(element =>  self_test.areas2.push({"id" : element.id, "desc":element.desc ,"id_area" : element.id_area,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon , "ar_ar_id":element.ar_ar_id}))
-                     
-              })
-
-                        axios.get(store.state.url_api+'Mantenedores/getFechas/'+event,{
-
-                    headers: {
-                      Authorization:store.state.token
-                    }
-                    })
-
-                            .then(response => {
-                           
-                                console.log("fechaaaa",response)
-                                console.log("this.fechas", self_test.fechas)
-                                self_test.fechas=[]
-                            const prueba2 =response.data.fechas
-                              prueba2.forEach(element => self_test.fechas.push({"id" : element.fc_id, "desc":element.fc_desc},  
-                              ))
-                          })
-
-                //get tipo capas 
-                axios.get(store.state.url_api+'Mantenedores/getTipoCapas/'+event)
-                .then((response) => 
-              {
-                  this.tipos=[]
-                  console.log("capas",response.data.tipo_capas)
-                    const prueba2 =response.data.tipo_capas
-                      prueba2.forEach(element => this.tipos.push({"id" : element.tcp_id, "desc":element.tcp_desc},          
-                    ),
-                
-            );
-          
-            })
-
-              //get capas
-                axios.get('http://plataforma_api.adentu.techapi_ortomosaicos/index.php/Mantenedores/getAreas/'+event)
-                .then((response) => 
-              {
-         
-                self_test.capas_tarjetas=[]
-                const almacenarCapas=response.data.capas
-
-                almacenarCapas.forEach(element => self_test.capas_tarjetas.push({"id" : element.cp_id, "text":element.cp_desc ,"fecha":element.fc_desc ,"tipo":element.tcp_desc },    
-                    
-                    ),
-
-            );
-          
-            })
-              
-
+      /*self_test.datos.mapa=false  
+      self_test.datos.latitud1=""
+      self_test.datos.longitud1=""
+      self_test.datos.descripcion=""*/
+      self_test.datos.areaId=0
+      axios.get(store.state.url_api+'Mantenedores/getAreas/'+event, {
+        headers: {
+          Authorization:store.state.token
+        }
+      })
+      .then(response => {
+        this.areas = []
+        this.areas2 = []
+        const areaAlmacenada =response.data.areas
+        console.log("areaaaaasssssss",response.data.areas)
+        areaAlmacenada.forEach(element =>  self_test.areas.push({"id" : element.ar_id, "desc":element.ar_desc ,"id_area" : element.ar_id,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon , "ar_ar_id":element.ar_ar_id}))
+        self_test.areas2.push({"id" : "0", "desc":"Sin área madre" ,"id_area" : 0,"ar_lat":0, "ar_lon":0})
+        self_test.areas.forEach(element =>  self_test.areas2.push({"id" : element.id, "desc":element.desc ,"id_area" : element.id_area,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon , "ar_ar_id":element.ar_ar_id})) 
+      })
+      
+      axios.get(store.state.url_api+'Mantenedores/getFechas/'+event,{
+        headers: {
+          Authorization:store.state.token
+        }
+      })
+      .then(response => {     
+        console.log("fechaaaa",response)
+        console.log("this.fechas", self_test.fechas)
+        self_test.fechas=[]
+        const prueba2 =response.data.fechas
+        prueba2.forEach(element => self_test.fechas.push({"id" : element.fc_id, "desc":element.fc_desc},
+        ))
+      })
+      
+      //get tipo capas 
+      axios.get(store.state.url_api+'Mantenedores/getTipoCapas/'+event)
+      .then((response) => {
+        this.tipos=[]
+        console.log("capas",response.data.tipo_capas)
+        const prueba2 =response.data.tipo_capas
+        prueba2.forEach(element => this.tipos.push({"id" : element.tcp_id, "desc":element.tcp_desc},
+        ));
+      })
+      
+      //get capas
+      axios.get('http://plataforma_api.adentu.techapi_ortomosaicos/index.php/Mantenedores/getAreas/'+event)
+      .then((response) => {
+        self_test.capas_tarjetas=[]
+        const almacenarCapas=response.data.capas
+        almacenarCapas.forEach(element => self_test.capas_tarjetas.push({"id" : element.cp_id, "text":element.cp_desc ,"fecha":element.fc_desc ,"tipo":element.tcp_desc},
+        ));    
+      })
     },
 
     crearNuevaArea(datos){
-        console.log("datos",datos.area2[0].id)
-        datos.area2=[{"id" : 0, "desc":"sin area" ,"id_area" : 0,"ar_lat":0, "ar_lon":0}]
-        let self_test = this
-        this.datos.nuevaArea=true
-        self_test.datos.areaId=0   
-        self_test.datos.latitud1=""
-        self_test.datos.longitud1=""
-        self_test.datos.area2=datos.area2[0].id
-        self_test.datos.descripcion=""
-        self_test.estado="Nueva"
-        self_test.datos.mapa=false
-       },
+      console.log("datos",datos.area2[0].id)
+      datos.area2=[{"id" : 0, "desc":"sin area" ,"id_area" : 0,"ar_lat":0, "ar_lon":0}]
+      let self_test = this
+      this.datos.nuevaArea=true
+      self_test.datos.areaId=0   
+      self_test.datos.latitud1=""
+      self_test.datos.longitud1=""
+      self_test.datos.area2=datos.area2[0].id
+      self_test.datos.descripcion=""
+      self_test.estado="Nueva"
+      self_test.datos.mapa=false
+    },
 
     cargarMapa(datos){
-
-             let self_test = this
-            self_test.datos.mapa=true
-             console.log("latituuuu",this.datos.latitud1)
-
-               console.log("laongi1",this.datos.longitud1)
+      let self_test = this
+      self_test.datos.mapa = true
+      console.log("latituuuu",this.datos.latitud1)
+      console.log("laongi1",this.datos.longitud1)
    
-         // This example creates a simple polygon representing the Bermuda Triangle.
-
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 14,
-            center: { lat: parseFloat(this.datos.latitud1), lng: parseFloat(this.datos.longitud1)}, 
-            mapTypeId: "satellite",
-            streetViewControl: false,
-            mapTypeControl: false,
-            zoomControl:false,
-            panControl:false,
-       
-        });
+      // This example creates a simple polygon representing the Bermuda Triangle.
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 14,
+        center: { lat: parseFloat(this.datos.latitud1), lng: parseFloat(this.datos.longitud1)}, 
+        mapTypeId: "satellite",
+        streetViewControl: false,
+        mapTypeControl: false,
+        zoomControl:false,
+        panControl:false,       
+      });
  
-
-        // Construct 
-        const centroArea = new google.maps.Marker({
-            position:     { lat: parseFloat(this.datos.latitud1), lng: parseFloat(this.datos.longitud1)},
-           
-        });
-        centroArea.setMap(map);
-       
-            },
-
-     },
+      // Construct 
+      const centroArea = new google.maps.Marker({
+        position: { lat: parseFloat(this.datos.latitud1), lng: parseFloat(this.datos.longitud1)},           
+      });
+      centroArea.setMap(map);       
+    },
+  },
   mounted(){
     
           let self_test = this

@@ -91,7 +91,7 @@ import store from '../store/index'
                 password: '',
                 username:'',
                 token:["hollaaaaa"],
-                usuario:false,
+                //usuario:false,
         
               },
               show1: false,       

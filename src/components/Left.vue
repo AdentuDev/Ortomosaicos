@@ -59,7 +59,7 @@
             </v-list-item-icon>
             <v-list-item-content >
               <v-list-item-title style="color: white;">Imagenes</v-list-item-title>
-            </v-list-item-content> 
+            </v-list-item-content>
           </v-list-item>
         </template>
   
@@ -67,9 +67,9 @@
         <v-list-item
           v-for="(item, i) in imagenes"
           :key="i"
-            link
-            @click="ingresar(item)"   
-            :class="item.link === $route.path ? 'v-list-item--active'  : ''"
+          link
+          @click="ingresar(item)"   
+          :class="item.link === $route.path ? 'v-list-item--active'  : ''"
         >
           <v-list-item-title v-text="item.text" style="color: white !important;"></v-list-item-title>
     
@@ -157,6 +157,7 @@ export default {
  
          console.log('this.estado: ', this.estado)
          this.estado=false 
+         
 
          if (link == "/eliminarimagen/" ){
             this.estado=true
