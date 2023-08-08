@@ -238,113 +238,102 @@ export default {
 
   name:'Inicio',
 
- data(){
+  data(){
     return{
       datos:{
         prueba:false,
-         nuevaArea:false,
-         latitud1:false,
-         longitud1:false,
-         area:[],
-         seleccion_id:store.state.eleccionProyecto,
-         editarCapas:[],
-         area_id:null,
-         mapa:false,
-         descripcion:"",
+        nuevaArea:false,
+        latitud1:false,
+        longitud1:false,
+        area:[],
+        seleccion_id:store.state.eleccionProyecto,
+        editarCapas:[],
+        area_id:null,
+        mapa:false,
+        descripcion:"",
         areaId:0,
         proyecto_id:0,
         area2:[{"id" : 0, "desc":"sin area" ,"id_area" : 0,"ar_lat":0, "ar_lon":0}]
       },
 
-        items: [{icon:'mdi-inbox', } ],
-        fechas:[],
-        tipos:[],
-        areas:[],
-        capas_tarjetas:[],
-        areas2:[],
-        boton:false,
-        dialog: false,
-        estado:"",
+      items: [{icon:'mdi-inbox', } ],
+      fechas:[],
+      tipos:[],
+      areas:[],
+      capas_tarjetas:[],
+      areas2:[],
+      boton:false,
+      dialog: false,
+      estado:"",
     }
- },
-   methods:{ 
-    click_area(item){
-       
-        let self_test = this
-        this.datos.nuevaArea=true
-        console.log("item",item)   
-        self_test.datos.latitud1=""
-        self_test.datos.longitud1=""
-        self_test.datos.descripcion=""
-        self_test.estado="Editar"
-        this.datos.mapa=false
-  self_test.datos.areaId=item.id
-        //dato de latitud 1
-            self_test.datos.latitud1=parseFloat(item.ar_lat) 
-    
-        //dato longitud 1
-            self_test.datos.longitud1=parseFloat(item.ar_lon)
+  },
 
-        //dato area
-            self_test.datos.area2=item.ar_ar_id
- 
-        //datos descripcion
-            self_test.datos.descripcion=item.desc
+  methods:{
+    click_area(item){     
+      let self_test = this
+      this.datos.nuevaArea=true
+      console.log("item",item)   
+      self_test.datos.latitud1=""
+      self_test.datos.longitud1=""
+      self_test.datos.descripcion=""
+      self_test.estado="Editar"
+      this.datos.mapa=false
+      self_test.datos.areaId=item.id
+      
+      //dato de latitud 1
+      self_test.datos.latitud1=parseFloat(item.ar_lat) 
+      //dato longitud 1
+      self_test.datos.longitud1=parseFloat(item.ar_lon)
+      //dato area
+      self_test.datos.area2=item.ar_ar_id
+      //datos descripcion
+      self_test.datos.descripcion=item.desc
 
-
-            console.log("item",item)
- 
-         
+      console.log("item",item)   
     },
-
+    
 
     guardarNuevaArea(datos){
       console.log("ingreso a guardar")
-        let self_test = this
-        self_test.dialog=false
-        var area={
-          area:{ar_desc:this.datos.descripcion,ar_lat:this.datos.latitud1,ar_lon:this.datos.longitud1, ar_id:this.datos.areaId,ar_pr_id:this.datos.seleccion_id, ar_ar_id:this.datos.area2 }
-        
-        }
-console.log("area a back",area)
-        var params = new URLSearchParams();
-          params.append("area",JSON.stringify(area));
+      let self_test = this
+      self_test.dialog=false
+      var area={
+        area:{ar_desc:this.datos.descripcion,ar_lat:this.datos.latitud1,ar_lon:this.datos.longitud1, ar_id:this.datos.areaId,ar_pr_id:this.datos.seleccion_id, ar_ar_id:this.datos.area2 }        
+      }
+      console.log("area a back",area)
+      var params = new URLSearchParams();
+      params.append("area",JSON.stringify(area));
               
-        //Post de nueva capa
-          axios.post(store.state.url_api+'Mantenedores/setArea', params,{
-            headers: {
-              Authorization:store.state.token
-            }
-            })
-            .then((params) =>{
-                 console.log(params)
-                 //actualizacion de lista de areas
-                       axios.get(store.state.url_api+'Mantenedores/getAreas/'+ this.datos.seleccion_id,{
-
-                          headers: {
-                            Authorization:store.state.token
-                          }
-                          })
-                              .then(response => {
-                              
-                                this.areas = []
-                                this.areas2 = []
-                                const areaAlmacenada =response.data.areas
-                                console.log("areaaaaasssssss",response.data.areas)
-                                  areaAlmacenada.forEach(element =>  self_test.areas.push({"id" : element.ar_id, "desc":element.ar_desc ,"id_area" : element.ar_id,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon ,"ar_ar_id":element.ar_ar_id}))
-
-                                  self_test.areas2.push({"id" : "0", "desc":"Sin área madre" ,"id_area" : 0,"ar_lat":0, "ar_lon":0})
-                                self_test.areas.forEach(element =>  self_test.areas2.push({"id" : element.id, "desc":element.desc ,"id_area" : element.id_area,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon,"ar_ar_id":element.ar_ar_id }))
-                                  
-                            })
-
-                  swal({
-                          position:'top-end',
-                          icon: 'success',
-                          title: 'Datos guardados',
-                          timer: 3000
-                        })                            
-                    })                        
+      //Post de nueva capa
+      axios.post(store.state.url_api+'Mantenedores/setArea', params,{
+        headers: {
+          Authorization:store.state.token
+        }
+      })
+      .then((params) =>{
+        console.log(params)
+        //actualizacion de lista de areas
+        axios.get(store.state.url_api+'Mantenedores/getAreas/'+ this.datos.seleccion_id,{
+          headers: {
+            Authorization:store.state.token
+          }
+        })
+        .then(response => {                              
+          this.areas = []
+          this.areas2 = []
+          const areaAlmacenada =response.data.areas
+          console.log("areaaaaasssssss",response.data.areas)
+          areaAlmacenada.forEach(element =>  self_test.areas.push({"id" : element.ar_id, "desc":element.ar_desc ,"id_area" : element.ar_id,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon ,"ar_ar_id":element.ar_ar_id}))
+            self_test.areas2.push({"id" : "0", "desc":"Sin área madre" ,"id_area" : 0,"ar_lat":0, "ar_lon":0})
+            self_test.areas.forEach(element =>  self_test.areas2.push({"id" : element.id, "desc":element.desc ,"id_area" : element.id_area,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon,"ar_ar_id":element.ar_ar_id }))                      
+        })
+        swal({
+          position:'top-end',
+          icon: 'success',
+          title: 'Datos guardados',
+          timer: 3000
+        })                            
+      })                        
     },
 
 
@@ -408,6 +397,7 @@ console.log("area a back",area)
       })
     },
 
+
     crearNuevaArea(datos){
       console.log("datos",datos.area2[0].id)
       datos.area2=[{"id" : 0, "desc":"sin area" ,"id_area" : 0,"ar_lat":0, "ar_lon":0}]
@@ -421,6 +411,7 @@ console.log("area a back",area)
       self_test.estado="Nueva"
       self_test.datos.mapa=false
     },
+    
 
     cargarMapa(datos){
       let self_test = this
@@ -446,83 +437,64 @@ console.log("area a back",area)
       centroArea.setMap(map);       
     },
   },
+
   mounted(){
-    
-          let self_test = this
-          self_test.datos.seleccion_id
-           self_test.datos.mapa=false  
-          self_test.datos.latitud1=false
-          self_test.datos.longitud1=false
-          self_test.datos.areaId=0 
+    let self_test = this
+    self_test.datos.seleccion_id
+    self_test.datos.mapa=false  
+    self_test.datos.latitud1=false
+    self_test.datos.longitud1=false
+    self_test.datos.areaId=0 
             
-          axios.get(store.state.url_api+'Mantenedores/getAreas/'+self_test.datos.seleccion_id,{
+    axios.get(store.state.url_api+'Mantenedores/getAreas/'+self_test.datos.seleccion_id,{
+      headers: {
+        Authorization:store.state.token
+      }
+    })
+    .then(response => {                
+      this.areas = []
+      this.areas2 = []
+      const areaAlmacenada =response.data.areas
+      console.log("areaaaaasssssss",response.data.areas)
+      areaAlmacenada.forEach(element =>  self_test.areas.push({"id" : element.ar_id, "desc":element.ar_desc ,"id_area" : element.ar_id,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon, "ar_ar_id": element.ar_ar_id}))
+        self_test.areas2.push({"id" : "0", "desc":"Sin área madre" ,"id_area" : 0,"ar_lat":0, "ar_lon":0})
+        self_test.areas.forEach(element =>  self_test.areas2.push({"id" : element.id, "desc":element.desc ,"id_area" : element.id_area,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon, "ar_ar_id": element.ar_ar_id}))
+      })
 
-          headers: {
-            Authorization:store.state.token
-          }
-          })
-                .then(response => {
-                
-                  this.areas = []
-                  this.areas2 = []
-                  const areaAlmacenada =response.data.areas
-                  console.log("areaaaaasssssss",response.data.areas)
-                    areaAlmacenada.forEach(element =>  self_test.areas.push({"id" : element.ar_id, "desc":element.ar_desc ,"id_area" : element.ar_id,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon, "ar_ar_id": element.ar_ar_id}))
+    axios.get(store.state.url_api+'Mantenedores/getFechas/'+self_test.datos.seleccion_id,{
+      headers: {
+        Authorization:store.state.token
+      }
+    })
+    .then(response => {
+      console.log("fechaaaa",response)
+      console.log("this.fechas", self_test.fechas)
+      self_test.fechas=[]
+      const prueba2 =response.data.fechas
+      prueba2.forEach(element => self_test.fechas.push({"id" : element.fc_id, "desc":element.fc_desc},  
+      ))
+    })
+    
+    //get tipo capas 
+    axios.get(store.state.url_api+'Mantenedores/getTipoCapas/'+self_test.datos.seleccion_id)
+    .then((response) => {
+      this.tipos=[]
+      console.log("capas",response.data.tipo_capas)
+      const prueba2 =response.data.tipo_capas
+      prueba2.forEach(element => this.tipos.push({"id" : element.tcp_id, "desc":element.tcp_desc}),
+      );    
+    })
 
-                    self_test.areas2.push({"id" : "0", "desc":"Sin área madre" ,"id_area" : 0,"ar_lat":0, "ar_lon":0})
-                   self_test.areas.forEach(element =>  self_test.areas2.push({"id" : element.id, "desc":element.desc ,"id_area" : element.id_area,"ar_lat":element.ar_lat, "ar_lon":element.ar_lon, "ar_ar_id": element.ar_ar_id}))
-                     
-              })
-
-                        axios.get(store.state.url_api+'Mantenedores/getFechas/'+self_test.datos.seleccion_id,{
-
-                    headers: {
-                      Authorization:store.state.token
-                    }
-                    })
-
-                            .then(response => {
-                           
-                                console.log("fechaaaa",response)
-                                console.log("this.fechas", self_test.fechas)
-                                self_test.fechas=[]
-                            const prueba2 =response.data.fechas
-                              prueba2.forEach(element => self_test.fechas.push({"id" : element.fc_id, "desc":element.fc_desc},  
-                              ))
-                          })
-
-                //get tipo capas 
-                axios.get(store.state.url_api+'Mantenedores/getTipoCapas/'+self_test.datos.seleccion_id)
-                .then((response) => 
-              {
-                  this.tipos=[]
-                  console.log("capas",response.data.tipo_capas)
-                    const prueba2 =response.data.tipo_capas
-                      prueba2.forEach(element => this.tipos.push({"id" : element.tcp_id, "desc":element.tcp_desc},          
-                    ),
-                
-            );
-          
-            })
-
-              //get capas
-                axios.get('http://plataforma_api.adentu.techapi_ortomosaicos/index.php/Mantenedores/getAreas/'+self_test.datos.seleccion_id)
-                .then((response) => 
-              {
-         
-                self_test.capas_tarjetas=[]
-                const almacenarCapas=response.data.capas
-
-                almacenarCapas.forEach(element => self_test.capas_tarjetas.push({"id" : element.cp_id, "text":element.cp_desc ,"fecha":element.fc_desc ,"tipo":element.tcp_desc },    
-                    
-                    ),
-
-            );
-          
-            })
-              
+    //get capas
+    axios.get('http://plataforma_api.adentu.techapi_ortomosaicos/index.php/Mantenedores/getAreas/'+self_test.datos.seleccion_id)
+    .then((response) => {
+      self_test.capas_tarjetas=[]
+      const almacenarCapas=response.data.capas
+      almacenarCapas.forEach(element => self_test.capas_tarjetas.push({"id" : element.cp_id, "text":element.cp_desc ,"fecha":element.fc_desc ,"tipo":element.tcp_desc },),
+      );    
+    })          
   }
-} 
 
 
+}
 </script>
